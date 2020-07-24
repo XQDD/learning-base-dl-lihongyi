@@ -3,7 +3,7 @@ import math
 import numpy as np
 import pandas as pd
 
-# 读取训练集，台湾/香港的繁体中文为big5编码
+# 读取训练集，台湾/香港的繁体中文一般为big5编码
 data = pd.read_csv("./resource/train.csv", encoding="big5")
 # 去除前3列无用数据，iloc第一个参数表示行筛选，第二个参数表示列筛选
 # 注意pandas默认会将第一行数据作为标题，所以不需要处理
@@ -41,7 +41,11 @@ for month in range(12):
                                                                                                                      -1)
             # 行下标为9的数据为pm2.5
             y[month * 471 + day * 24 + hour, 0] = month_data[month][9, day * 24 + hour + 9]
-# TODO 归一化
+# 归一化，axis=0表示求该列所有数的均值和标准差（可看作合并所有行为一行）
+mean_x = np.mean(x, axis=0)
+std_x = np.mean(x, axis=0)
+for i in range(len(x)):
+    x[i] = (x[i] - mean_x) / std_x
 
 # 将已有数据分为训练数据和校验数据
 x_train_set = x[: math.floor(len(x) * 0.8), :]
@@ -53,14 +57,39 @@ y_validation = y[math.floor(len(y) * 0.8):, :]
 dim = 18 * 9 + 1
 w = np.zeros([dim, 1])
 x = np.concatenate((np.ones([12 * 471, 1]), x), axis=1).astype(float)
-learning_rate = 0.0000000003
+learning_rate = 0.0000006
 iter_time = 10000
-for t in range(iter_time):
+
+w_temp = np.copy(w)
+
+
+def calculate_gradient():
     # 除以12*471原因是有12*471份数据相加了，这里求均值即可
     loss = np.sqrt(np.sum(np.power(np.dot(x, w) - y, 2)) / 12 / 471)
     if t % 100 == 0:
         print(f"{t=},{loss=}")
-    # 复合函数求偏导得到这个公式，可以用数量比较少的w和x(数据)来校验这个公式
-    gradient = 2 * np.dot(x.transpose(), np.dot(x, w) - y)
+    # 通过复合函数求偏导得到此公式，可以用数量比较少的w和x(数据)来校验这个公式
+    return 2 * np.dot(x.transpose(), np.dot(x, w) - y)
+
+
+# 普通梯度下降法(最原始，也叫批量梯度下降BGD)
+print("普通梯度效果")
+for t in range(iter_time):
+    gradient = calculate_gradient()
     # 更新w
     w -= learning_rate * gradient
+
+# adagrad
+print("adagrad效果")
+w = w_temp
+adagrad = np.zeros([dim, 1])
+# eps是为了防止adagrad为零
+eps = 0.0000000001
+learning_rate = 2
+
+for t in range(iter_time):
+    gradient = calculate_gradient()
+    # adagrad是前面所有(包括当前)积分的均方根(将N个项的平方和除以N后开平方)
+    # 两个乘号意思是乘方，即2个gradient相乘
+    adagrad += gradient ** 2
+    w -= learning_rate * gradient / np.sqrt(adagrad + eps)
