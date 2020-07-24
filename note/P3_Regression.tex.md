@@ -60,7 +60,7 @@ w和b组成的图像则如同等高线图：
 ![图 4](images/P3_Regression_2020-07-22_07-48-15.png)  
 ![图 5](images/P3_Regression_2020-07-22_08-01-17.jpg)  
 
-### 5 归一化
+### 5 正则化
 
 回到第2步骤，调整Loss function为：
 $L=\sum(\hat{y}^n-(b+\sum{w_i}x_i))^2+\lambda{\sum}(w_i)^2$

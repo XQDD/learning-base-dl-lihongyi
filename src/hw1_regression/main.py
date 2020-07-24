@@ -41,7 +41,7 @@ for month in range(12):
                                                                                                                      -1)
             # 行下标为9的数据为pm2.5
             y[month * 471 + day * 24 + hour, 0] = month_data[month][9, day * 24 + hour + 9]
-# TODO 归一/正则化
+# TODO 归一化
 
 # 将已有数据分为训练数据和校验数据
 x_train_set = x[: math.floor(len(x) * 0.8), :]
