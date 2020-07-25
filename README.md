@@ -7,7 +7,7 @@
 <https://www.bilibili.com/video/BV1JE411g7XF?p=1>
 
 ## 作业安排
-<https://www.bilibili.com/video/BV1ug4y187eg>
+<https://www.bilibili.com/video/BV1gE411F7td>
 
 ## 笔记参考
 <https://github.com/Sakura-gh/ML-notes>
