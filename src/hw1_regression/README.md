@@ -1,6 +1,6 @@
 # 回归
 
-## 归一化
+## 归一化(标准化 Normalization)
 
 ![图 1](images/READEME_2020-07-25_02-23-18.jpg)  
 ![图 2](images/READEME_2020-07-25_02-23-57.jpg)  
