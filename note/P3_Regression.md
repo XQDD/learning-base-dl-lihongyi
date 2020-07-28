@@ -54,7 +54,7 @@
 
 1. 不管参数b，先处理w，得<img src="/note/tex/56c3cc8e0139c40d7b13344c075e4d1a.svg?invert_in_darkmode&sanitize=true" align=middle width=143.46596879999998pt height=24.65753399999998pt/>
 2. 随机选择一个<img src="/note/tex/dee3368366fc5ad01199b96a460aaf52.svg?invert_in_darkmode&sanitize=true" align=middle width=18.76339244999999pt height=26.76175259999998pt/>
-3. 更新<img src="/note/tex/027a4bbbe5866d81528dd0e578d95066.svg?invert_in_darkmode&sanitize=true" align=middle width=167.99703029999998pt height=28.92634470000001pt/>，启动<img src="/note/tex/1d0496971a2775f4887d1df25cea4f7e.svg?invert_in_darkmode&sanitize=true" align=middle width=8.751954749999989pt height=14.15524440000002pt/>称作学习率
+3. 更新<img src="/note/tex/027a4bbbe5866d81528dd0e578d95066.svg?invert_in_darkmode&sanitize=true" align=middle width=167.99703029999998pt height=28.92634470000001pt/>，其中<img src="/note/tex/1d0496971a2775f4887d1df25cea4f7e.svg?invert_in_darkmode&sanitize=true" align=middle width=8.751954749999989pt height=14.15524440000002pt/>称作学习率
 
 重复上述步骤3，直到<img src="/note/tex/393655c6934375e41496acf410220123.svg?invert_in_darkmode&sanitize=true" align=middle width=36.18352154999999pt height=24.65753399999998pt/>取得最小值
 此时b也可以类似这样处理，通过偏微分来更新w和b：
