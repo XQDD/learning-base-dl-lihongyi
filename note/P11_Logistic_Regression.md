@@ -28,4 +28,4 @@ $z=\sum_iw_ix_i+b$
 ## 梯度下降更新函数
 
 将最终的损失函数通过一系列微分计算得到
-$w_i\gets\eta\sum_n-\hat{y}^n-f_{w,b}(x^n)x_i^n$
+$w_i\gets{w_i-}\eta\sum_n(-\hat{y}^n-f_{w,b}(x^n)x_i^n)$

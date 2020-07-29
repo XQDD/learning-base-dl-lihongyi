@@ -43,7 +43,7 @@ for month in range(12):
             y[month * 471 + day * 24 + hour, 0] = month_data[month][9, day * 24 + hour + 9]
 # 归一化，axis=0表示求该列所有数的均值和标准差（可看作合并所有行为一行）
 mean_x = np.mean(x, axis=0)
-std_x = np.mean(x, axis=0)
+std_x = np.std(x, axis=0)
 for i in range(len(x)):
     x[i] = (x[i] - mean_x) / std_x
 
@@ -57,8 +57,8 @@ y_validation = y[math.floor(len(y) * 0.8):, :]
 dim = 18 * 9 + 1
 w = np.zeros([dim, 1])
 x = np.concatenate((np.ones([12 * 471, 1]), x), axis=1).astype(float)
-learning_rate = 0.0000006
-iter_time = 10000
+learning_rate = 0.000001
+iter_time = 1000
 
 w_temp = np.copy(w)
 
