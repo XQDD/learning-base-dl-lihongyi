@@ -34,7 +34,7 @@ def evaluation(outputs, labels):
     return torch.sum(torch.eq(outputs, labels)).item()
 
 
-# TODO NLP基础，将句子数字化(编码)，此处是最简单的用词频数编码
+# NLP基础，将句子数字化(编码)，此处是最简单的用词频数编码，不会区分句子中词的顺序，可用word embedding优化
 class BOW():
     def __init__(self, max_len=10000):
         self.wordfreq = {}
@@ -81,7 +81,7 @@ class TwitterDataset(data.Dataset):
 class LSTM_Net(nn.Module):
     def __init__(self, embedding_dim):
         super(LSTM_Net, self).__init__()
-        # TODO 假的LSTM？假的RNN？这不是一个简单的DNN吗？
+        #  此处是简单的DNN，非LSTM
         self.classifier = nn.Sequential(nn.Linear(embedding_dim, 512),
                                         nn.Linear(512, 128),
                                         nn.Linear(128, 1),
